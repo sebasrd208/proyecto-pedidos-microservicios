@@ -1,0 +1,47 @@
+<div class="container d-flex justify-content-center align-items-center mt-3">
+    <div class="card shadow p-4" style="width:400px; user-select: none;">
+        <h3 class="text-center mb-4"> ACTUALIZACION DE PROVEEDORES </h3>
+
+        <form (ngSubmit)="editar()">
+
+            <div class="mb-3">
+                <label class="form-label">ID del Proveedor:</label>
+                <input type="number" class="form-control" [(ngModel)]="proveedor.idProveedor" name="idProveedor"
+                    readonly>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Nombre: </label>
+                <input type="text" class="form-control" [(ngModel)]="proveedor.nombre" name="nombre">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">RFC: </label>
+                <input type="text" class="form-control" [(ngModel)]="proveedor.rfc" name="rfc">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Correo:</label>
+                <input type="text" class="form-control" [(ngModel)]="proveedor.email" name="email">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Telefono:</label>
+                <input type="number" class="form-control" [(ngModel)]="proveedor.telefono" name="telefono">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Dirección:</label>
+                <input type="text" class="form-control" [(ngModel)]="proveedor.direccion" name="direccion">
+            </div>
+
+            <button class="btn btn-primary w-100 mb-3">
+                <i class="bi bi-pencil-square me-2"></i>Actualizar proveedor
+            </button>
+
+            <button class="btn btn-danger w-100 mb-3" (click)="cancelar()">
+                <i class="bi bi-x-circle me-2"></i> Cancelar
+            </button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4" style="user-select: none;">
+        <h3>PEDIDOS</h3>
+        <div class="d-flex gap-2">
+            <button class="btn btn-success" (click)="guardar()"> GUARDAR PEDIDO </button>
+        </div>
+    </div>
+    <div class="card shadow">
+        <div class="card-body" style="user-select: none;">
+            <table class="table table-hover align-middle text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th (click)="ordenarPedidos('idPedido')">
+                            ID
+                            <i class="bi" [ngClass]="{'bi-caret-up-fill': sortColumn==='idPedido' && sortDirection==='asc', 'bi-caret-down-fill':
+                             sortColumn==='idPedido' && sortDirection==='desc'}"></i>
+                        </th>
+                        <th (click)="ordenarPedidos('estado')">
+                            ESTADO
+                            <i class="bi" [ngClass]="{'bi-caret-up-fill': sortColumn==='estado' && sortDirection==='asc', 'bi-caret-down-fill':
+                             sortColumn==='estado' && sortDirection==='desc'}"></i>
+                        </th>
+                        <th (click)="ordenarPedidos('fechaPedido')">
+                            FECHA
+                            <i class="bi" [ngClass]="{'bi-caret-up-fill': sortColumn==='fechaPedido' && sortDirection==='asc', 'bi-caret-down-fill':
+                             sortColumn==='fechaPedido' && sortDirection==='desc'}"></i>
+                        </th>
+                        <th (click)="ordenarPedidos('folio')">
+                            FOLIO
+                            <i class="bi" [ngClass]="{'bi-caret-up-fill': sortColumn==='folio' && sortDirection==='asc', 'bi-caret-down-fill':
+                             sortColumn==='folio' && sortDirection==='desc'}"></i>
+                        </th>
+                        <th (click)="ordenarPedidos('total')">
+                            TOTAL
+                            <i class="bi" [ngClass]="{'bi-caret-up-fill': sortColumn==='total' && sortDirection==='asc', 'bi-caret-down-fill':
+                             sortColumn==='total' && sortDirection==='desc'}"></i>
+                        </th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(pedido of pedidos; track pedido.idPedido){
+                    <tr>
+                        <td> {{pedido.idPedido}} </td>
+                        <td> {{pedido.estado}} </td>
+                        <td> {{pedido.fechaPedido}} </td>                    
+                        <td> {{pedido.folio}} </td>
+                        <td> {{pedido.total | currency: 'MXN':'symbol':'1.2-2'}} </td>
+                        <td>
+                            <button class="btn btn-danger btn-sm" (click)="eliminar(pedido.idPedido)">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                            <button class="btn btn-lg btn-warning btn-sm" (click)="obtenerPDF(pedido.idPedido)">
+                                <i class="bi bi-file-earmark-pdf"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    }@empty{
+                    <td class="text-center" colspan="5"> No hay pedidos registrados</td>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

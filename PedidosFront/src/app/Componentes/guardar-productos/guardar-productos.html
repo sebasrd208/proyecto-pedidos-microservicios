@@ -1,0 +1,30 @@
+<div class="container d-flex justify-content-center align-items-center mt-3">
+    <div class="card shadow p-4" style="width:400px; user-select: none;">
+        <h3 class="text-center mb-4"> REGISTRO DE PRODUCTOS </h3>
+
+        <form (ngSubmit)="registrar()">
+            <div class="mb-3">
+                <label class="form-label">Nombre: </label>
+                <input type="text" class="form-control" [(ngModel)]="producto.nombre" name="nombre">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Precio: </label>
+                <input type="number" class="form-control" [(ngModel)]="producto.precio" name="precio">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Capacidad:</label>
+                <input type="number" class="form-control" [(ngModel)]="producto.stock" name="capacidad">
+            </div>
+            
+            <button class="btn btn-dark w-100 mb-3"> 
+                <i class="bi bi-check-circle me-2"></i> Registrar producto
+            </button>
+
+            <button class="btn btn-danger w-100 mb-3" (click)="cancelar()">
+                <i class="bi bi-x-circle me-2"></i> Cancelar
+            </button>
+        </form>
+    </div>
+</div>

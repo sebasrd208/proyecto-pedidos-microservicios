@@ -1,0 +1,71 @@
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4" style="user-select: none;">
+        <h3>PROVEEDORES</h3>
+        <div class="d-flex gap-2">
+            <button class="btn btn-success" (click)="guardar()"> GUARDAR PROVEEDOR </button>
+        </div>
+    </div>
+    <div class="card shadow">
+        <div class="card-body" style="user-select: none;">
+            <table class="table table-hover align-middle text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th (click)="ordenarProveedores('idProveedor')">
+                            ID
+                            <i class="bi" [ngClass]="{'bi-caret-up-fill': sortColumn==='idProveedor' && sortDirection==='asc', 'bi-caret-down-fill':
+                             sortColumn==='idProveedor' && sortDirection==='desc'}"></i>
+                        </th>
+                        <th (click)="ordenarProveedores('nombre')">
+                            NOMBRE
+                            <i class="bi" [ngClass]="{'bi-caret-up-fill': sortColumn==='nombre' && sortDirection==='asc', 'bi-caret-down-fill':
+                             sortColumn==='nombre' && sortDirection==='desc'}"></i>
+                        </th>
+                        <th (click)="ordenarProveedores('rfc')">
+                            RFC
+                            <i class="bi" [ngClass]="{'bi-caret-up-fill': sortColumn==='rfc' && sortDirection==='asc', 'bi-caret-down-fill':
+                             sortColumn==='rfc' && sortDirection==='desc'}"></i>
+                        </th>
+                        <th (click)="ordenarProveedores('email')">
+                            CORREO
+                            <i class="bi" [ngClass]="{'bi-caret-up-fill': sortColumn==='email' && sortDirection==='asc', 'bi-caret-down-fill':
+                             sortColumn==='email' && sortDirection==='desc'}"></i>
+                        </th>
+                        <th (click)="ordenarProveedores('telefono')">
+                            TELEFONO
+                            <i class="bi" [ngClass]="{'bi-caret-up-fill': sortColumn==='telefono' && sortDirection==='asc', 'bi-caret-down-fill':
+                             sortColumn==='telefono' && sortDirection==='desc'}"></i>
+                        </th>
+                        <th (click)="ordenarProveedores('direccion')">
+                            DIRECCION
+                            <i class="bi" [ngClass]="{'bi-caret-up-fill': sortColumn==='direccion' && sortDirection==='asc', 'bi-caret-down-fill':
+                             sortColumn==='direccion' && sortDirection==='desc'}"></i>
+                        </th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(proveedor of proveedores; track proveedor.idProveedor){
+                    <tr>
+                        <td> {{proveedor.idProveedor}} </td>
+                        <td> {{proveedor.nombre}} </td>
+                        <td> {{proveedor.rfc}} </td>
+                        <td> {{proveedor.email}} </td>
+                        <td> {{proveedor.telefono}} </td>
+                        <td> {{proveedor.direccion}} </td>
+                        <td>
+                            <button class="btn btn-danger btn-sm" (click)="eliminar(proveedor.idProveedor)">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                            <button class="btn btn-lg btn-warning btn-sm" (click)="editar(proveedor)">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    }@empty{
+                    <td class="text-center" colspan="5"> No hay proveedores registrados</td>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

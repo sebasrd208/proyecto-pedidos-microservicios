@@ -1,0 +1,59 @@
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4" style="user-select: none;">
+        <h3>PRODUCTOS</h3>
+        <div class="d-flex gap-2">
+            <button class="btn btn-success" (click)="guardar()"> GUARDAR PRODUCTO </button>
+        </div>
+    </div>
+    <div class="card shadow">
+        <div class="card-body" style="user-select: none;">
+            <table class="table table-hover align-middle text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th (click)="ordenarProductos('idInventario')">
+                            ID
+                            <i class="bi" [ngClass]="{'bi-caret-up-fill': sortColumn==='idInventario' && sortDirection==='asc', 'bi-caret-down-fill':
+                             sortColumn==='idInventario' && sortDirection==='desc'}"></i>
+                        </th>
+                        <th (click)="ordenarProductos('nombre')">
+                            NOMBRE
+                            <i class="bi" [ngClass]="{'bi-caret-up-fill': sortColumn==='nombre' && sortDirection==='asc', 'bi-caret-down-fill':
+                             sortColumn==='nombre' && sortDirection==='desc'}"></i>
+                        </th>
+                        <th (click)="ordenarProductos('precio')">
+                            PRECIO
+                            <i class="bi" [ngClass]="{'bi-caret-up-fill': sortColumn==='precio' && sortDirection==='asc', 'bi-caret-down-fill':
+                             sortColumn==='precio' && sortDirection==='desc'}"></i>
+                        </th>
+                        <th (click)="ordenarProductos('stock')">
+                            CAPACIDAD
+                            <i class="bi" [ngClass]="{'bi-caret-up-fill': sortColumn==='stock' && sortDirection==='asc', 'bi-caret-down-fill':
+                             sortColumn==='stock' && sortDirection==='desc'}"></i>
+                        </th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for(producto of productos; track producto.idInventario){
+                    <tr>
+                        <td> {{producto.idInventario}} </td>
+                        <td> {{producto.nombre}} </td>
+                        <td> {{producto.precio | currency: 'MXN':'symbol':'1.2-2'}} </td>
+                        <td> {{producto.stock}} </td>
+                        <td>
+                            <button class="btn btn-danger btn-sm" (click)="eliminar(producto.idInventario)">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                            <button class="btn btn-lg btn-warning btn-sm" (click)="editar(producto)">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    }@empty{
+                    <td class="text-center" colspan="5"> No hay productos registrados</td>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
