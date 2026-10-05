@@ -10,8 +10,16 @@ import { EditarProductos } from './Componentes/editar-productos/editar-productos
 import { GuardarProveedores } from './Componentes/guardar-proveedores/guardar-proveedores';
 import { GuardarProductos } from './Componentes/guardar-productos/guardar-productos';
 import { GuardarPedidos } from './Componentes/guardar-pedidos/guardar-pedidos';
+import { RecuperarPassword } from './Componentes/recuperar-password/recuperar-password';
+import { EditarUsuarios } from './Componentes/editar-usuarios/editar-usuarios';
+import { CambiarPassword } from './Componentes/cambiar-password/cambiar-password';
+import { ListarUsuarios } from './Componentes/listar-usuarios/listar-usuarios';
 
 export const routes: Routes = [
+    {
+        path: 'recuperar-password',
+        component: RecuperarPassword
+    },
     {
         path: 'registros',
         component: Registro
@@ -36,6 +44,11 @@ export const routes: Routes = [
         canActivate: [guardsGuard]
     },
     {
+        path: 'listar-usuarios',
+        component: ListarUsuarios,
+        canActivate: [guardsGuard]
+    },
+    {
         path: 'editar-proveedores',
         component: EditarProveedores,
         canActivate: [guardsGuard]
@@ -43,6 +56,11 @@ export const routes: Routes = [
     {
         path: 'editar-productos',
         component: EditarProductos,
+        canActivate: [guardsGuard]
+    },
+    {
+        path: 'editar-usuarios',
+        component: EditarUsuarios,
         canActivate: [guardsGuard]
     },
     {
@@ -59,6 +77,11 @@ export const routes: Routes = [
         path: 'guardar-pedidos',
         component: GuardarPedidos,
         canActivate: [guardsGuard],
+    },
+    {
+        path: 'cambiar-password',
+        component: CambiarPassword,
+        canActivate: [guardsGuard]
     },
     {
         path: '',

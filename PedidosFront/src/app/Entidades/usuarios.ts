@@ -4,6 +4,8 @@ export enum Rol {
 }
 
 export interface Usuarios {
+    id: Number;
+    nombreCompleto: string;
     username: string;
     password: string;
     rol: Rol;

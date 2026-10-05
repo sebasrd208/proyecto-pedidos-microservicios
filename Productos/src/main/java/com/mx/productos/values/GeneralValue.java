@@ -14,7 +14,6 @@ public class GeneralValue {
             " #{rec_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=r_SP_GETINVENTARIO}" +
             ")}";
 
-
     public static final String SP_GET_ID_INVENTARIO
             = "{ call PA_INVENTARIO.SP_GET_ID_INVENTARIO(" +
             " #{rec_cursor, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=r_SP_GET_ID_INVENTARIO}," +

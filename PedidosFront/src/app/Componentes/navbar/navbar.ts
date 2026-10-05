@@ -3,6 +3,7 @@ import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthService } from '../../Servidor/auth-service';
 import Swal from 'sweetalert2';
 import { FormsModule } from '@angular/forms';
+import { Rol } from '../../Entidades/usuarios';
 
 @Component({
   selector: 'app-navbar',
@@ -13,10 +14,26 @@ import { FormsModule } from '@angular/forms';
 export class Navbar implements OnInit{
 
   username: string = '';
+  rol: string = '';
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.authService.username$.subscribe(username => {
       this.username = username;
+    });
+
+    this.authService.role$.subscribe(rol => {
+      switch (rol) {
+        case Rol.ADMIN:
+          this.rol = 'Administrador';
+          break;
+
+        case Rol.USER:
+          this.rol = 'Usuario';
+          break;
+
+        default:
+          this.rol = '';
+      }
     });
   }
 
@@ -26,14 +43,18 @@ export class Navbar implements OnInit{
   ) { }
 
   isLoggedIn() {
-    return this.authService.logeado();
+    return this.authService.isLoggedIn();
+  }
+
+  isAdmin() {
+    return this.authService.isAdmin();
   }
 
   logout() {
     Swal.fire({
       title: 'CERRAR SESIÓN',
       text: '¿Deseas cerrar sesión?',
-      icon: 'warning',
+      icon: 'question',
       showCancelButton: true,
       confirmButtonText: 'Cerrar sesión',
       cancelButtonText: 'Cancelar',
@@ -51,15 +72,20 @@ export class Navbar implements OnInit{
     })
   }
 
-  getUsername() {
-    return localStorage.getItem('username') || '';
+  login() {
+    this.router.navigate(['login']);
+  }
+
+  actualizar() {
+    localStorage.setItem('usuario_key', this.username);
+    this.router.navigate(['cambiar-password']);
   }
 
   registro() {
     this.router.navigate(['registros']);
   }
 
-  guardar() {
-    this.router.navigate(['guardar-producto']);
+  nuevo() {
+    this.router.navigate(['guardar']);
   }
 }

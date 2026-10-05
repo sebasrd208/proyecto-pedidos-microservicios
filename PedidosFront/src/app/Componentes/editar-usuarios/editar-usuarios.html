@@ -1,0 +1,50 @@
+<div class="container d-flex justify-content-center align-items-center mt-3">
+    <div class="card shadow p-4" style="width:400px; user-select: none;">
+        <h2 class="fw-bold text-secondary text-center mb-2">
+            ACTUALIZAR DATOS DEL USUARIO
+        </h2>
+        <p class="text-center text-muted mb-4">
+            Datos de {{usuario.username}}
+        </p>
+
+        <form>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">ID: </label>
+                <input type="text" name="idUsuario" class="form-control form-control-lg"
+                    placeholder="Elige un id de usuario" [(ngModel)]="usuario.id" disabled>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Nombre: </label>
+                <input type="text" name="nombre" class="form-control form-control-lg"
+                    placeholder="Ingresa tu nombre" [(ngModel)]="usuario.nombreCompleto">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-semibold">Usuario: </label>
+                <input type="text" name="username" class="form-control form-control-lg"
+                    placeholder="Elige un nombre de usuario" [(ngModel)]="usuario.username" disabled>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Rol: </label>
+                <select name="rol" class="form-select" [(ngModel)]="usuario.rol" required>
+                    <option value="ADMIN"> Administrador </option>
+                    <option value="USER"> Usuario </option>
+                </select>
+            </div>
+
+            <div class="d-grid mb-4">
+                <button class="btn btn-primary btn-lg shadow-sm" type="button" (click)="editar()" title='Actualizar usuario'>
+                    Actualizar
+                </button>
+                <br>
+                <button class="btn btn-danger btn-lg shadow-sm" type="button" (click)="cancelar()" title='Cancelar actualización'>
+                    Cancelar
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
