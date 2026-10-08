@@ -17,6 +17,13 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
     }
 
+    @ExceptionHandler(UsuarioExistenteException.class)
+    public ResponseEntity<?> usuarioYaExiste(UsuarioExistenteException ex) {
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(Map.of("error", ex.getMessage()));
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<?> validationHandler(MethodArgumentNotValidException ex){
         Map<String, String> errores = new HashMap<>();
