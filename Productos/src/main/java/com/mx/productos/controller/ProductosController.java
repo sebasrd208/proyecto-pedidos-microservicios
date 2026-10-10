@@ -64,9 +64,6 @@ public class ProductosController {
     public ResponseEntity<?> mostrarProducto(@RequestParam String idInventario){
         try {
             InventarioDTO usuario = service.byIdInventario(idInventario);
-            if (usuario == null) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"Mensaje\":\"No hay contenido en la lista\"}");
-            }
             return ResponseEntity.ok(usuario);
         }catch (RuntimeException s){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(s.getCause().getMessage().lines().findFirst().orElse("").trim());
