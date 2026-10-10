@@ -20,9 +20,6 @@ public class ProductosController {
     public ResponseEntity<?> mostrarProductos() {
         try {
             List<InventarioDTO> lista = service.listar();
-            if (lista.isEmpty()) {
-                return ResponseEntity.status(HttpStatus.NO_CONTENT).body("{\"Mensaje\":\"No hay contenido en la lista\"}");
-            }
             return ResponseEntity.ok(lista);
         }catch(RuntimeException s){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(s.getCause().getMessage().lines().findFirst().orElse("").trim());
