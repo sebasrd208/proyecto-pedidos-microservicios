@@ -13,10 +13,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class iUsuarioRepositoryTest {
+public class IUsuarioRepositoryTest {
 
     @Autowired
-    private iUsuarioRepository repository;
+    iUsuarioRepository repository;
 
     @Test
     void save_debeGuardarUsuario() {
@@ -27,7 +27,7 @@ public class iUsuarioRepositoryTest {
 
         Usuario resultado = repository.save(usuario);
 
-        assertNotNull(resultado.getId());
+        assertTrue(resultado.getId() > 0);
         assertEquals("sebas", resultado.getUsername());
         assertEquals("HASH", resultado.getPassword());
         assertEquals(Rol.USER, resultado.getRol());
