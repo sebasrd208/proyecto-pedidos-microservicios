@@ -1,15 +1,13 @@
 package com.mx.proveedores.repository;
 
-
-import com.mx.proveedores.entity.Proveedor;
+import java.util.List;
+import java.util.Optional;
 import org.junit.jupiter.api.Test;
+import com.mx.proveedores.entity.Proveedor;
+import static org.junit.jupiter.api.Assertions.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.data.jpa.test.autoconfigure.DataJpaTest;
 import org.springframework.boot.jdbc.test.autoconfigure.AutoConfigureTestDatabase;
-import java.util.List;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
