@@ -43,7 +43,7 @@ public class ProveedorService {
 
     public ProveedorResponseDTO editar(ProveedorRequestDTO dto) {
         Proveedor proveedor = repository.findById(dto.getIdProveedor())
-                .orElseThrow(() -> new ProveedorNotFoundException("Cliente no econtrado con el id " + dto.getIdProveedor()));
+                .orElseThrow(() -> new ProveedorNotFoundException("Proveedor no encontrado con el id " + dto.getIdProveedor()));
 
         proveedor.setTelefono(dto.getTelefono());
         proveedor.setEmail(dto.getEmail());
@@ -54,7 +54,7 @@ public class ProveedorService {
 
     public void eliminar(int idProveedor){
         Proveedor proveedor = repository.findById(idProveedor)
-                .orElseThrow(() -> new ProveedorNotFoundException("Cliente no econtrado con el id " + idProveedor));
+                .orElseThrow(() -> new ProveedorNotFoundException("Proveedor no encontrado con el id " + idProveedor));
 
         repository.delete(proveedor);
     }
