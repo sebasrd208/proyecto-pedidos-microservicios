@@ -1,5 +1,6 @@
 package com.mx.proveedores.controller;
 
+import com.mx.proveedores.excepciones.ProveedorNotFoundException;
 import jakarta.validation.*;
 import com.mx.proveedores.dto.*;
 import org.springframework.http.*;
@@ -16,27 +17,52 @@ public class ProveedoresController {
 
     @GetMapping
     public ResponseEntity<?> listar(){
-        return ResponseEntity.ok(service.listar());
+        try{
+            return ResponseEntity.ok(service.listar());
+        }catch(ProveedorNotFoundException s){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(s.getCause().getMessage().lines().findFirst().orElse("").trim());
+        }
     }
 
     @PostMapping
     public ResponseEntity<?> guardar(@Valid @RequestBody ProveedorRequestDTO dto){
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(dto));
+        try {
+            return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(dto));
+        }catch(RuntimeException s){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(s.getMessage().lines().findFirst().orElse("").trim());
+        }
     }
 
     @GetMapping("/{idProveedor}")
     public ResponseEntity<?> buscar(@PathVariable int idProveedor){
-        return ResponseEntity.ok(service.buscar(idProveedor));
+        try {
+            return ResponseEntity.ok(service.buscar(idProveedor));
+        } catch (ProveedorNotFoundException s) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(s.getCause().getMessage().lines().findFirst().orElse("").trim());
+        }
     }
 
     @PutMapping
     public ResponseEntity<?> editar(@Valid @RequestBody ProveedorRequestDTO dto){
-        return ResponseEntity.ok(service.editar(dto));
+        try {
+            return ResponseEntity.ok(service.editar(dto));
+        }catch(RuntimeException s){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(s.getMessage().lines().findFirst().orElse("").trim());
+        }
     }
 
     @DeleteMapping("/{idProveedor}")
     public ResponseEntity<?> eliminar(@PathVariable int idProveedor){
-        service.eliminar(idProveedor);
-        return ResponseEntity.noContent().build();
+        try {
+            service.eliminar(idProveedor);
+            return ResponseEntity.noContent().build();
+        }catch (ProveedorNotFoundException s){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(s.getCause().getMessage().lines().findFirst().orElse("").trim());
+        }
     }
 }
